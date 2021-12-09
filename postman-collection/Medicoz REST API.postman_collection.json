@@ -40,15 +40,26 @@
 									"type": "number"
 								},
 								{
+									"key": "genderCd",
+									"value": "M",
+									"type": "text"
+								},
+								{
 									"key": "mobileNumber",
 									"value": "9585067098",
 									"type": "text"
 								},
 								{
-									"key": "genderCd",
-									"value": "M",
+									"key": "otp",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "checkbox",
+									"value": "",
 									"type": "text"
 								}
+							
 							]
 						},
 						"url": {

@@ -17,11 +17,13 @@ import UserProfile from "../models/UserProfileModel.js";
  *
  * @param {string}      firstName
  * @param {string}      lastName
- * @param {string}      mobileNumber
  * @param {string}      age
  * @param {string}      genderCd
- *
- * @returns {Object}
+ * @param {string}      mobileNumber
+ * @param {string}      otp
+ * @param {string}      checkbox
+ * 
+ *  @returns {Object}
  */
 const register = [
 	// Validate fields.
@@ -29,6 +31,9 @@ const register = [
 		.isAlphanumeric().withMessage("First name has non-alphanumeric characters."),
 	body("lastName").isLength({ min: 1 }).trim().withMessage("Last name must be specified.")
 		.isAlphanumeric().withMessage("Last name has non-alphanumeric characters."),
+	body("age").isLength({ min: 1 }).trim().withMessage("Age must be specified.")
+		.isNumeric().withMessage("Age should be numeric."),
+	body("genderCd").isLength({ min: 1 }).trim().withMessage("Gender must be specified."),
 	body("mobileNumber").isLength({ min: 10 }).trim().withMessage("Mobile Number must be specified 10 digits.")
 		.isNumeric().withMessage("Invalid Mobile Number.")
 		.custom((value) => {
@@ -38,16 +43,19 @@ const register = [
 				}
 			});
 		}),
-	body("age").isLength({ min: 1 }).trim().withMessage("Age must be specified.")
-		.isNumeric().withMessage("Age should be numeric."),
-	body("genderCd").isLength({ min: 1 }).trim().withMessage("Gender must be specified."),
+		body("otp").isLength({ min: 4 }).trim().withMessage("otp must be specified.")
+		.isNumeric().withMessage("otp should be numeric."),
+	body("checkbox").isLength({ min: 1 }).trim().withMessage("checkbox must be specified."),
+	
 
 	// Sanitize fields.
 	sanitizeBody("firstName").escape(),
 	sanitizeBody("lastName").escape(),
 	sanitizeBody("age").escape(),
-	sanitizeBody("mobileNumber").escape(),
 	sanitizeBody("genderCd").escape(),
+	sanitizeBody("mobileNumber").escape(),
+	sanitizeBody("otp").escape(),
+	sanitizeBody("checkbox").escape(),
 
 
 
@@ -88,10 +96,12 @@ const register = [
 							lastName: req.body.lastName,
 							age: req.body.age,
 							genderCd: req.body.genderCd,
-							mobileNumber: req.body.mobileNumber,
 							relationshipCd: "Self",
 							profilePhoto: "",
 							patientUID: "PT" + parseInt(Math.random() * (9999999999 - 1000000000) + 1000000000),
+							mobileNumber: req.body.mobileNumber,
+							otp: req.body.otp,
+							checkbox: req.body.checkbox,
 							_accountId: account._id,
 						});
 

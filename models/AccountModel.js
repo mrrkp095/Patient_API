@@ -6,6 +6,8 @@ var AccountSchema = new mongoose.Schema({
 	age: {type: Number, required: false},
 	mobileNumber: {type: Number, required: false},
 	genderCd: {type: String, required: false},
+	otp:{type:String,required:false},
+	checkbox: { type: Boolean, default: false },
 }, {timestamps: true});
 
 
