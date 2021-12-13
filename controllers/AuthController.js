@@ -74,7 +74,9 @@ const register = [
 				var account = new AccountModel(
 					{
 						mobileNumber: req.body.mobileNumber,
-						age: req.body.age
+						age: req.body.age,
+						otp: req.body.otp,
+						checkbox: req.body.checkbox,
 
 					}
 				);
@@ -100,11 +102,9 @@ const register = [
 							profilePhoto: "",
 							patientUID: "PT" + parseInt(Math.random() * (9999999999 - 1000000000) + 1000000000),
 							mobileNumber: req.body.mobileNumber,
-							otp: req.body.otp,
-							checkbox: req.body.checkbox,
 							_accountId: account._id,
 						});
-
+console.log(userProfile)
 					userProfile.save(function (err) {
 						if (err) {
 							return ErrorResponse(res, err);
