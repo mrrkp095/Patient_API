@@ -72,9 +72,6 @@ app.use((err, req, res) => {
 	}
 });
 
-const letter=["selectType","apple"];
-console.log(letter);
-
 export default app;
 
 
